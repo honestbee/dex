@@ -47,7 +47,7 @@ staticClients:
   - 'http://127.0.0.1:5555/callback'
 ```
 
-In this case, the Go code would configured as:
+In this case, the Go code would be configured as:
 
 ```go
 // Initialize a provider by specifying dex's issuer URL.
@@ -75,7 +75,7 @@ oauth2Config := oauth2.Config{
 }
 
 // Create an ID token parser.
-idTokenVerifier := provider.NewVerifier(&oidc.Config{ClientID: "example-app"})
+idTokenVerifier := provider.Verifier(&oidc.Config{ClientID: "example-app"})
 ```
 
 The HTTP server should then redirect unauthenticated users to dex to initialize the OAuth2 flow.
@@ -149,7 +149,7 @@ if err != nil {
     // handle error
 }
 // Create an ID token parser, but only trust ID tokens issued to "example-app"
-idTokenVerifier := provider.NewVerifier(&oidc.Config{ClientID: "example-app"})
+idTokenVerifier := provider.Verifier(&oidc.Config{ClientID: "example-app"})
 ```
 
 The verifier can then be used to pull user info out of tokens:
